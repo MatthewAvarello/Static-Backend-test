@@ -4,6 +4,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { buffer } from 'node:stream/consumers'
 
+const PORT = parseInt(process.env.PORT)
+if(!PORT){
+    throw new Error("No specified Port")
+}
 const pages = {
     "/": "index.html",
     "/about": "about.html",
@@ -43,6 +47,6 @@ const server = http.createServer((request,response) => {
 
 })
 
-server.listen(8080,'localhost',() => {
-    console.log("server running")
+server.listen(PORT,'localhost',() => {
+    console.log("Server Running at localhost:"+ PORT)
 })
